@@ -1,0 +1,22 @@
+#include<opencv2/opencv.hpp>
+#include<iostream>
+
+using namespace cv;
+using namespace std;
+
+int main()
+{
+	Mat img_src;
+	img_src = imread("image.jpg", IMREAD_COLOR);
+
+	Mat img_dst;
+	flip(img_src, img_dst, 0);
+	// python방식-> img_dst = cv2.flip(img_src, 1)
+
+
+	imshow("src", img_src);
+	imshow("flip", img_dst);
+	waitKey();
+	destroyAllWindows();
+
+}
