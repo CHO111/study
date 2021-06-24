@@ -1,0 +1,41 @@
+#include<opencv2/opencv.hpp>
+#include<iostream>
+
+using namespace cv;
+using namespace std;
+
+int main()
+{
+	Mat frame;
+	VideoCapture cap("dancin2.mp4");
+
+	if (!cap.isOpened())
+	{
+		cout << "동영상을 열수 없습니다." << endl;
+		return -1;
+	}
+
+	Mat frame_gray;
+	Mat frame_gray_updown;
+
+	while (1)
+	{
+		bool ret = cap.read(frame);
+		// python방식 -> ret, frame = capture.read();
+		cvtColor(frame, frame_gray, COLOR_BGR2GRAY);
+
+		flip(frame_gray, frame_gray_updown, 0);
+
+		imshow("Video", frame); // frame 은 img_src 동일
+		imshow("Video_gray", frame_gray); // frame 은 img_src 동일
+		imshow("Video_gray_updown", frame_gray_updown); // frame 은 img_src 동일
+		//이미지 처리를 해주면 된다.
+
+		int key = waitKey(33);
+		if (key == 27) // esc키
+			break;
+	}
+	cap.release();
+	destroyAllWindows();
+
+}
