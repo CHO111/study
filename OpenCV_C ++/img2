@@ -1,0 +1,26 @@
+#include<opencv2/opencv.hpp>
+#include<iostream>
+
+using namespace cv;
+using namespace std;
+
+int main()
+{
+	Mat img_src;
+	img_src = imread("image.jpg", IMREAD_COLOR);
+	int height = img_src.rows;
+	int width = img_src.cols;
+	// python방식->height, width = img_src.reshape[:2]
+
+	Mat matrix = getRotationMatrix2D(Point(width / 2, height / 2)/*회전할떄 중심점*/, 45/*회전각도*/, 1/*회전배율*/);
+	// python방식-> matrix = cv2.getRotationMatrix2D((width / 2, height / 2), 45, 1)
+	Mat img_dst;
+	warpAffine(img_src, img_dst, matrix, Size(width, height));
+	//python방식->img_dst = cv2.warpAffine(frame, matrix, (width, height))
+		
+
+	imshow("src", img_src);
+	imshow("rotation Result", img_dst);
+	waitKey();
+	destroyAllWindows();
+}
