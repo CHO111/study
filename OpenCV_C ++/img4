@@ -1,0 +1,27 @@
+#include<opencv2/opencv.hpp>
+#include<iostream>
+
+using namespace cv;
+using namespace std;
+
+int main()
+{
+	Mat img_src;
+	img_src = imread("image.jpg", IMREAD_COLOR);
+	int height = img_src.rows;
+	int width = img_src.cols;
+	Mat img_dst1, img_dst2;
+
+	resize(img_src, img_dst1, Size(200, 200), INTER_LINEAR);
+	resize(img_src, img_dst2, Size(), 0.5, 0.5);
+
+	//pyrDown(img_src, img_dst1);
+	//pyrUp(img_src, img_dst2, Size(img_src.cols*2, img_src.rows*2));
+
+
+	imshow("dst", img_dst1);
+	imshow("dst2", img_dst2);
+	imshow("src", img_src);
+	waitKey();
+	destroyAllWindows();
+}
