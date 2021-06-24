@@ -1,0 +1,51 @@
+#include<opencv2/opencv.hpp>
+#include<iostream>
+
+using namespace cv;
+using namespace std;
+
+int main()
+{
+	Mat img_src;
+	img_src = imread("image2.jpg", IMREAD_COLOR);
+	pyrDown(img_src, img_src);
+	int height = img_src.rows;
+	int width = img_src.cols;
+
+	Mat img_crop, img_crop2;
+	img_crop = img_src(Rect(30, 180, 200, 440)).clone();
+	img_crop2 = img_src(Rect(570, 330, 160, 260)).clone();
+	cvtColor(img_crop, img_crop, COLOR_BGR2GRAY);
+	cvtColor(img_crop, img_crop, COLOR_GRAY2BGR);
+	img_crop.copyTo(img_src(Rect(30, 180, 200, 440)));
+
+
+	cvtColor(img_crop2, img_crop2, COLOR_BGR2GRAY);
+	cvtColor(img_crop2, img_crop2, COLOR_GRAY2BGR);
+	img_crop2.copyTo(img_src(Rect(570, 330, 160, 260)));
+
+	imshow("src", img_src);
+	waitKey();
+	destroyAllWindows();
+	
+
+	//int w_q1 = width / 4;
+	//int h_q1 = height / 4;
+
+	////img_crop = img_src[h_q1:h_q3, w_q1 : w_q3].copy()
+
+
+
+	//cvtColor(img_crop, img_crop, COLOR_BGR2GRAY);
+	//cvtColor(img_crop, img_crop, COLOR_GRAY2BGR);
+
+
+
+	//imshow("src", img_src);
+	//waitKey();
+	//destroyAllWindows();
+}
+
+
+
+
