@@ -1,0 +1,25 @@
+study#include<opencv2/opencv.hpp>
+#include<iostream>
+
+using namespace cv;
+using namespace std;
+
+int main()
+{
+	Mat img_src;
+	img_src = imread("image.jpg", IMREAD_COLOR);
+	// python방식 -> img_src = cv2.imread("image.jpg",cv2.IMREAD_COLOR)
+
+	Mat img_gray;
+	// 이미지를 그레이 영상으로 바꿈
+	cvtColor(img_src, img_gray, COLOR_BGR2GRAY);
+	// python방식 -> img_gray - cv2.cvtColor(img_src, cv2.COLOR_BGR2GRAY)
+
+	imshow("src", img_src);
+	imshow("Gray", img_gray);
+	// python방식 -> cv2.imshow("src", img_src)	
+	waitKey(0);
+	// python방식 -> cv2.waitKey()
+	destroyAllWindows();
+	// python방식 -> cv2.destroyAllWindows()
+}
