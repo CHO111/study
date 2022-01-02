@@ -22,5 +22,4 @@ int main()
 	// python방식 -> cv2.waitKey()
 	destroyAllWindows();
 	// python방식 -> cv2.destroyAllWindows()
-	
 }
